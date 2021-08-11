@@ -1,0 +1,61 @@
+lets check if there is any missing value present in the dataset
+data.isnull().sum()
+
+output:
+"N              0
+P              0
+K              0
+temperature    0
+humidity       0
+ph             0
+rainfall       0
+label          0
+dtype: int64"
+
+
+#lets check the crops present in this Dataset
+data['label'].value_counts()
+
+output:
+"maize          100
+mungbean       100
+pomegranate    100
+apple          100
+jute           100
+pigeonpeas     100
+muskmelon      100
+coconut        100
+blackgram      100
+papaya         100
+coffee         100
+cotton         100
+watermelon     100
+mothbeans      100
+banana         100
+lentil         100
+grapes         100
+mango          100
+orange         100
+kidneybeans    100
+rice           100
+chickpea       100
+Name: label, dtype: int64"
+
+#lets check the summary for all the crops
+
+print("Average Ratio of Nitrogen in the soil : {0:.2f}".format(data['N'].mean()))
+print("Average Ratio of Phosphorous in the soil : {0:.2f}".format(data['P'].mean()))
+print("Average Ratio of Potassium in the soil : {0:.2f}".format(data['K'].mean()))
+print("Average Temperature in celsius : {0:.2f}".format(data['temperature'].mean()))
+print("Average Relative Humidity  in % : {0:.2f}".format(data['humidity'].mean()))
+print("Average PH value of the soil : {0:.2f}".format(data['ph'].mean()))
+print("Average Rainfall in mm : {0:.2f}".format(data['rainfall'].mean()))
+
+output:
+"Average Ratio of Nitrogen in the soil : 50.55
+Average Ratio of Phosphorous in the soil : 53.36
+Average Ratio of Potassium in the soil : 48.15
+Average Temperature in celsius : 25.62
+Average Relative Humidity  in % : 71.48
+Average PH value of the soil : 6.47
+Average Rainfall in mm : 103.46"
