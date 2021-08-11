@@ -1,0 +1,65 @@
+# lets make this function more interative
+
+@interact
+def compare(conditions = ['N','P','K','temperature','ph','humidity','rainfall']):
+    print("Crops which requires greater than average", conditions,'\n')
+    print(data[data[conditions] > data[conditions].mean()]['label'].unique())
+    print("-----------------------------------------------")
+    print("Crops which requires less than average",conditions,'\n')
+    print(data[data[conditions] <= data[conditions].mean()]['label'].unique())
+    
+output:
+"conditions
+
+N
+Crops which requires greater than average N 
+
+['rice' 'maize' 'chickpea' 'blackgram' 'banana' 'watermelon' 'muskmelon'
+ 'papaya' 'cotton' 'jute' 'coffee']
+-----------------------------------------------
+Crops which requires less than average N 
+
+['chickpea' 'kidneybeans' 'pigeonpeas' 'mothbeans' 'mungbean' 'blackgram'
+ 'lentil' 'pomegranate' 'mango' 'grapes' 'apple' 'orange' 'papaya'
+ 'coconut']"
+ 
+ plt.subplot(2,4,1)
+sns.distplot(data['N'],color='blue')
+plt.xlabel('Ratio of Nitrogen',fontsize = 12)
+plt.grid()
+
+plt.subplot(2,4,2)
+sns.distplot(data['P'],color='green')
+plt.xlabel('Ratio of Phosphrous',fontsize = 12)
+plt.grid()
+
+plt.subplot(2,4,3)
+sns.distplot(data['k'],color='darkblue')
+plt.xlabel('Ratio of Potassuim',fontsize = 12)
+plt.grid()
+
+plt.subplot(2,4,4)
+sns.distplot(data['rainfall'],color='grey')
+plt.xlabel('Rainfall',fontsize = 12)
+plt.grid()
+
+plt.subplot(2,4,5)
+sns.distplot(data['temperature'],color='black')
+plt.xlabel('Temperature',fontsize = 12)
+plt.grid()
+
+plt.subplot(2,4,6)
+sns.distplot(data['humidity'],color='lightgreen')
+plt.xlabel('Humidity',fontsize = 12)
+plt.grid()
+
+plt.subplot(2,4,7)
+sns.distplot(data['ph'],color='darkgreen')
+plt.xlabel('pH Level',fontsize = 12)
+plt.grid()
+
+plt.suptitle('Distribution for Agricultural Conditions',fontsize = 20)
+plt.show()
+
+output:
+""
