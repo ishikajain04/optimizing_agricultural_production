@@ -1,0 +1,69 @@
+from sklearn.cluster import KMeans
+
+# removing the label column
+x = data.drop(['label'], axis = 1)
+
+# selecting all the values of the data
+x = x.values
+
+# checking the shape
+print(x.shape)
+
+output:
+"(2200, 7)"
+
+# lets determine the Optinum Number of Clusters within the Dataset
+
+plt.rcParams['figure.figsize'] = (10,4)
+
+wcss=[]
+for i in range(1,11):
+    km=KMeans(n_clusters = i, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
+    km.fit(x)
+    wcss.append(km.inertia_)
+
+    
+# Lets plot the results
+plt.plot(range(1,11), wcss)
+plt.title('The Elbow Method', fontsize = 20)
+plt.xlabel('No. of Clusters')
+plt.ylabel('wcss')
+plt.show()
+
+output:
+""
+
+
+
+
+# Lets implement the K Means algorithm to perform  clustering analysis
+km = KMeans(n_clusters = 4, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
+y_means = km.fit_predict(x)
+
+# lets find out the results
+a = data['label']
+y_means = pd.DataFrame(y_means)
+z = pd.concat([y_means, a], axis = 1)
+z = z.rename(columns = {0 : 'cluster'})
+
+# lets check the clusters of each crops
+print("Lets check the results after applying K Means Clustering Analysis \n")
+print("Crops in First Cluster :",z[z['cluster'] == 0]['label'].unique())
+print("----------------------------------------------------------------")
+print("Crops in Second Cluster :",z[z['cluster'] == 1]['label'].unique())
+print("----------------------------------------------------------------")
+print("Crops in Third Cluster :",z[z['cluster'] == 2]['label'].unique())
+print("----------------------------------------------------------------")
+print("Crops in Fourth Cluster :",z[z['cluster'] == 3]['label'].unique())
+
+output:
+"Lets check the results after applying K Means Clustering Analysis 
+
+Crops in First Cluster : ['maize' 'chickpea' 'kidneybeans' 'pigeonpeas' 'mothbeans' 'mungbean'
+ 'blackgram' 'lentil' 'pomegranate' 'mango' 'orange' 'papaya' 'coconut']
+----------------------------------------------------------------
+Crops in Second Cluster : ['maize' 'banana' 'watermelon' 'muskmelon' 'papaya' 'cotton' 'coffee']
+----------------------------------------------------------------
+Crops in Third Cluster : ['grapes' 'apple']
+----------------------------------------------------------------
+Crops in Fourth Cluster : ['rice' 'pigeonpeas' 'papaya' 'coconut' 'jute' 'coffee']"
