@@ -1,0 +1,139 @@
+#lets check the summary statistics for each of the crops
+
+@interact
+def summary(crops = list(data['label'].value_counts().index)):
+    x=data[data['label'] == crops]
+    print("----------------------------------------------")
+    print("Statistics for Nitrogen")
+    print("Minimum Nitrogen required : ",x['N'].min())
+    print("Average Nitrogen required : ",x['N'].mean())
+    print("Maximum Nitrogen required : ",x['N'].max())
+    print("-----------------------------------------------")
+    print("Statistics for Phosphrous")
+    print("Minimum Phosphrous required : ",x['P'].min())
+    print("Average Phosphrous required : ",x['P'].mean())
+    print("Maximum Phosphrous required : ",x['P'].max())
+    print("-----------------------------------------------")
+    print("Statistics for Potassium")
+    print("Minimum Potassium required : ",x['K'].min())
+    print("Average Potassium required : ",x['K'].mean())
+    print("Maximum Potassium required : ",x['K'].max())
+    print("-----------------------------------------------")
+    print("Statistics for Temperature")
+    print("Minimum Temperatue required : {0:.2f}".format(x['temperature'].min()))
+    print("Average Temperatue required : {0:.2f}".format(x['temperature'].mean()))
+    print("Maximum Temperatue required : {0:.2f}".format(x['temperature'].max()))
+    print("-----------------------------------------------")
+    print("Statistics for Humidity")
+    print("Minimum Humidity required : {0:.2f}".format(x['humidity'].min()))
+    print("Average Humidity required : {0:.2f}".format(x['humidity'].mean()))
+    print("Maximum Humidity required : {0:.2f}".format(x['humidity'].max()))
+    print("-----------------------------------------------")
+    print("Statistics for PH")
+    print("Minimum PH required : {0:.2f}".format(x['ph'].min()))
+    print("Average PH required : {0:.2f}".format(x['ph'].mean()))
+    print("Maximum PH required : {0:.2f}".format(x['ph'].max()))
+    print("-----------------------------------------------")
+    print("Statistics for Rainfall")
+    print("Minimum Rainfall required : {0:.2f}".format(x['rainfall'].min()))
+    print("Average Rainfall required : {0:.2f}".format(x['rainfall'].mean()))
+    print("Maximum Rainfall required : {0:.2f}".format(x['rainfall'].max()))
+    
+    output:
+    "crops
+
+maize
+----------------------------------------------
+Statistics for Nitrogen
+Minimum Nitrogen required :  60
+Average Nitrogen required :  77.76
+Maximum Nitrogen required :  100
+-----------------------------------------------
+Statistics for Phosphrous
+Minimum Phosphrous required :  35
+Average Phosphrous required :  48.44
+Maximum Phosphrous required :  60
+-----------------------------------------------
+Statistics for Potassium
+Minimum Potassium required :  15
+Average Potassium required :  19.79
+Maximum Potassium required :  25
+-----------------------------------------------
+Statistics for Temperature
+Minimum Temperatue required : 18.04
+Average Temperatue required : 22.39
+Maximum Temperatue required : 26.55
+-----------------------------------------------
+Statistics for Humidity
+Minimum Humidity required : 55.28
+Average Humidity required : 65.09
+Maximum Humidity required : 74.83
+-----------------------------------------------
+Statistics for PH
+Minimum PH required : 5.51
+Average PH required : 6.25
+Maximum PH required : 7.00
+-----------------------------------------------
+Statistics for Rainfall
+Minimum Rainfall required : 60.65
+Average Rainfall required : 84.77
+Maximum Rainfall required : 109.75"
+
+
+#lets compare the average requirements for each crops with average conditions
+
+@interact
+def compare(conditions = ['N','P','K','temperature', 'ph','humidity','rainfall']):
+    print("Average Value for", conditions," is {0:.2f}".format(data[conditions].mean()))
+    print("-------------------------------------------------")
+    print("Rice : {0:.2f}".format(data[(data['label'] == 'rice')][conditions].mean()))
+    print("Black Grams : {0:.2f}".format(data[(data['label'] == 'blackgrams')][conditions].mean()))
+    print("Banana : {0:.2f}".format(data[(data['label'] == 'banana')][conditions].mean()))
+    print("Jute : {0:.2f}".format(data[(data['label'] == 'jute')][conditions].mean()))
+    print("Coconut : {0:.2f}".format(data[(data['label'] == 'coconut')][conditions].mean()))
+    print("Apple : {0:.2f}".format(data[(data['label'] == 'apple')][conditions].mean()))
+    print("Papaya : {0:.2f}".format(data[(data['label'] == 'papaya')][conditions].mean()))
+    print("Muskmelon : {0:.2f}".format(data[(data['label'] == 'muskmelon')][conditions].mean()))
+    print("Grapes : {0:.2f}".format(data[(data['label'] == 'grapes')][conditions].mean()))
+    print("Watermelon : {0:.2f}".format(data[(data['label'] == 'watermelon')][conditions].mean()))
+    print("Kidney Beans : {0:.2f}".format(data[(data['label'] == 'kidneybeans')][conditions].mean()))
+    print("Mung Beans : {0:.2f}".format(data[(data['label'] == 'mungbean')][conditions].mean()))
+    print("Oranges : {0:.2f}".format(data[(data['label'] == 'oranges')][conditions].mean()))
+    print("Chick Peas : {0:.2f}".format(data[(data['label'] == 'chickpea')][conditions].mean()))
+    print("Lentils : {0:.2f}".format(data[(data['label'] == 'lentil')][conditions].mean()))
+    print("Cotton : {0:.2f}".format(data[(data['label'] == 'cotton')][conditions].mean()))
+    print("Maize : {0:.2f}".format(data[(data['label'] == 'maize')][conditions].mean()))
+    print("Moth Beans : {0:.2f}".format(data[(data['label'] == 'mothbeans')][conditions].mean()))
+    print("Pigeon Peas : {0:.2f}".format(data[(data['label'] == 'pigeonpeas')][conditions].mean()))
+    print("Mango : {0:.2f}".format(data[(data['label'] == 'mango')][conditions].mean()))
+    print("Pomegranate : {0:.2f}".format(data[(data['label'] == 'pomegranate')][conditions].mean()))
+    print("Coffee  : {0:.2f}".format(data[(data['label'] == 'coffee')][conditions].mean()))
+    
+output:
+"conditions
+
+N
+Average Value for N  is 50.55
+-------------------------------------------------
+Rice : 79.89
+Black Grams : nan
+Banana : 100.23
+Jute : 78.40
+Coconut : 21.98
+Apple : 20.80
+Papaya : 49.88
+Muskmelon : 100.32
+Grapes : 23.18
+Watermelon : 99.42
+Kidney Beans : 20.75
+Mung Beans : 20.99
+Oranges : nan
+Chick Peas : 40.09
+Lentils : 18.77
+Cotton : 117.77
+Maize : 77.76
+Moth Beans : 21.44
+Pigeon Peas : 20.73
+Mango : 20.07
+Pomegranate : 18.87
+Coffee  : 101.20"
